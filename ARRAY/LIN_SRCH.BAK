@@ -1,0 +1,33 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+int search(int arr[],int ele,int s)
+{
+	int i,found;
+	for(i=0;i<s;i++)
+	{
+		if(arr[i]==ele)
+		{
+		found=1;
+		break;
+		}
+		else
+		found=0;
+	}
+	return found;
+}
+void main()
+{
+	clrscr();
+	int arr[]={2,3,4,5,6,7};
+	int ele,f;
+	int s=5;
+	cout<<"\nEnter the element to search: ";
+	cin>>ele;
+	f=search(arr,ele,s);
+	if(f==1)
+	cout<<"\nfound";
+	else if(f==0)
+	cout<<"\nNot found";
+	getch();
+}

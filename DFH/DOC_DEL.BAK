@@ -1,0 +1,89 @@
+/*doctor.dat delete the the doctor whose no. is given*/
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+class doctor
+{
+	int dno;
+	char name[21];
+	float fees;
+	public:
+	void init();
+	void show();
+	int ret_dno()
+	{
+		return dno;
+	}
+};
+void doctor::init()
+{
+	cout<<"\nEnter doc no.: ";
+	cin>>dno;
+	cout<<"\nEnter doc name: ";
+	gets(name);
+	cout<<"\nEnter fees: ";
+	cin>>fees;
+}
+void doctor::show()
+{
+	cout<<"\nDic no: "<<dno;
+	cout<<"\nDoc name: "<<name;
+	cout<<"\nDoc fees: "<<fees;
+}
+void append()
+{
+	fstream f;
+	f.open("doctor.dat",ios::binary|ios::in|ios::out);
+	doctor d;
+	for(int i=0;i<3;i++)
+	{
+		d.init();
+		f.write((char*)&d,sizeof(d));
+	}
+	f.close();
+}
+void view()
+{
+	fstream f;
+	doctor d;
+	f.open("doctor.dat",ios::binary|ios::in);
+	while(f.read((char*)&d,sizeof(d)))
+	{
+		d.show();
+	}
+	f.close();
+}
+void remove()
+{
+	fstream f1,f2;
+	doctor d;
+	f1.open("doctor.dat",ios::binary|ios::in);
+	f2.open("doc.dat",ios::binary|ios::out);
+	int dn;
+	cout<<"\nEnter the doctor no. to remove: ";
+	cin>>dn;
+	while(f1.read((char*)&d,sizeof(d)))
+	{
+		if(dn==d.ret_dno())
+		{
+			cout<<"\nDeleting doc no: "<<dn;
+		}
+		else
+		{
+			f2.write((char*)&d,sizeof(d));
+		}
+	}
+		f1.close();
+		f2.close();
+		remove("doctor.dat");
+		rename("doc.dat","doctor.dat");
+}
+void main()
+{
+	clrscr();
+	append();
+	view();
+	remove();
+	view();
+	getch();
+}

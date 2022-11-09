@@ -1,0 +1,38 @@
+/*swapping adjacent positions */
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#define N 100
+void bub_srt(int arr[N],int sz)
+{
+	int i,j,temp;
+	for(i=0;i<sz;i+=2)
+	{
+		temp=arr[i];
+		arr[i]=arr[i+1];
+		arr[i+1]=temp;
+	}
+}
+void main()
+{
+	clrscr();
+	int arr[N],sz;
+lab:	cout<<"\nEnter the size of array(even): ";
+	cin>>sz;
+	if(sz%2==0)
+	{
+		cout<<"\nEnter the elements: ";
+		for(int i=0;i<sz;i++)
+		{
+			cin>>arr[i];
+		}
+		bub_srt(arr,sz);
+		for(i=0;i<sz;i++)
+		cout<<arr[i]<<" ";
+
+	}
+	else
+{	cout<<"\nThe size of array should be even";goto lab;}
+
+	getch();
+}

@@ -1,0 +1,36 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+/*wap to create a func to disp the array from index given,step value given,
+count given,then add them
+eg a[]=2,3,4,5,6,7,8
+index =3
+step =2
+count =5   */
+int sum_index(int arr[],int ind,int step,int ctr,int sz)
+{
+	int i,j,k,sum=0,c=0;
+	while(c<ctr)
+	{
+
+
+}
+void main()
+{
+	clrscr();
+	int arr[]={2,3,4,5,6}
+	int ind,step,count,sz;
+	cout<<"\nEnter size: ";
+	cin>>sz;
+	for(int i=0;i<sz;i++)
+	{
+		cout<<"Enter the elements: ";
+		cin>>arr[i];
+	}
+	cout<<"\nEnter index value: ";
+	cin>>ind;
+	cout<<"\nEnter step value: ";
+	cin>>step;
+	cout<<"\nEnter count value: ";
+	cin>>count;
+	res=sum_index(arr,ind,step,count,sz)

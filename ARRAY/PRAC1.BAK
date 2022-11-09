@@ -1,0 +1,28 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+int sortc(int a[],int sz)
+{
+	int t;
+	for(int i=0;i<sz;i++)
+	{
+		if(a[i+1]>a[i])
+		t=1;
+		else
+		return (-1);
+	}
+	return t;
+}
+void main()
+{
+	clrscr();
+	int a[10],sz;
+	cout<<"\nEnter the size of array: ";
+	cin>>sz;
+	cout<<"\nenter the elements: ";
+	for(int i=0;i<sz;i++)
+		cin>>a[i];
+	cout<<sortc(a,sz);
+	getch();
+}
+

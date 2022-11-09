@@ -1,0 +1,75 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+class base
+{
+	protected:
+	int x;
+	public:
+	void enter()
+	{
+	cout<<"\nEnter val of x: ";
+	cin>>x;
+	}
+	void show()
+	{
+	cout<<"\nx: "<<x;
+	}
+};
+class der1:virtual public base
+{
+	protected:
+	int y;
+	public:
+	void entery()
+	{
+		cout<<"\nEnter value of y: " ;
+		cin>>y;
+	}
+	void showy()
+	{
+		cout<<"\ny: "<<y;
+	}
+};
+class der2:public virtual base    //same virtual before or after public
+{
+	protected:
+	int z;
+	public:
+	void enterz()
+	{
+		cout<<"\nEnter val of z: ";
+		cin>>z;
+	}
+	void showz()
+	{
+		cout<<"\nZ: "<<z;
+	}
+};
+class der3:public der1,public der2
+{
+	int tot;
+	public:
+	void enterall()
+	{
+		enter();
+		entery();
+		enterz();
+		tot=x+y+z;
+	}
+	void showall()
+	{
+		show();
+		showy();
+		showz();
+		cout<<"\nTotal is: "<<tot;
+	}
+};
+void main()
+{
+	clrscr();
+	der3 d3;
+	d3.enterall();
+	d3.showall();
+	getch();
+}

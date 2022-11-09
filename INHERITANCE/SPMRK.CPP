@@ -1,0 +1,97 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+class stud
+{
+	protected:
+	int rno;
+	char nm[21];
+	public:
+	void read()
+	{
+		cout<<"\nEnter rno: ";
+		cin>>rno;
+		cout<<"\nEnter name:";
+		gets(nm);
+	}
+	void show()
+	{
+		cout<<"\nRno: "<<rno;
+		cout<<"\nName: "<<nm;
+	}
+};
+class marks : public stud
+{
+	protected:
+	int mrk[3];
+	public:
+	void readmrk();//like this
+	void showmrk() //to remove inline error keep the function out of
+	{	       //like done in readmrk
+		show();
+		for(int i=0;i<=2;i++)
+		{
+			cout<<"\nMarks: "<<mrk[i];
+		}
+	}
+};
+void marks::readmrk()
+{
+	read();
+	for(int i=0;i<=2;i++)
+	{
+		cout<<"\nEnter marks: ";
+		cin>>mrk[i];
+	}
+}
+class sportmrk
+{
+	protected:
+	char grd;
+	int spmrk;
+	public:
+	void enter()
+	{
+		cout<<"\nEnter the grade: ";
+		cin>>grd;
+		if(grd=='A'||grd=='a')
+		spmrk=90;
+		else if(grd=='B'||grd=='b')
+		spmrk=80;
+		else
+		spmrk=70;
+	}
+	void see_spmrk()
+	{
+		cout<<"\nSports marks: "<<spmrk;
+	}
+};
+class result:public marks,public sportmrk
+{
+	int per,sum;
+	public:
+	void calc()
+	{
+		readmrk();
+		enter();
+		sum=0;
+		for(int i=0;i<=2;i++)
+		sum=sum+mrk[i];
+		per=(sum+spmrk)/4;
+	}
+	void showall()
+	{
+		showmrk();
+		see_spmrk();
+		cout<<"percentage is: "<<per;
+	}
+};
+
+void main()
+{
+	clrscr();
+	result r;
+	r.calc();
+	r.showall();
+	getch();
+}

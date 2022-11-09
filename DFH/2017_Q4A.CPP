@@ -1,0 +1,29 @@
+/*waf puretext() that would display c instead of k mynotes.txt*/
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+void puretext()
+{
+	ofstream fout("mynotes.txt");
+	fout<<"I own a kute little kar\n";
+	fout<<"I kare for it as my khild\n";
+	fout.close();
+	char str[31];
+	ifstream fin("mynotes.txt");
+	while(!fin.eof())
+	{
+		fin>>str;
+		if(str[0]=='k')
+		str[0]='c';
+		cout<<str<<" ";
+	}
+	fin.close();
+}
+
+
+void main()
+{
+	clrscr();
+	puretext();
+	getch();
+}

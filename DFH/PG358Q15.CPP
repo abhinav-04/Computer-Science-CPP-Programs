@@ -1,0 +1,52 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+void main()
+{
+	clrscr();
+	char ch,ans;
+	ofstream f1("lower.txt");
+	ofstream f2("upper.txt");
+	ofstream f3("other.txt");
+	do
+	{
+		cout<<"\nEnter a character: ";
+		cin>>ch;
+		if((ch>='a')&&(ch<='z'))
+		f1<<ch;
+		else if((ch>='A')&&(ch<='Z'))
+		f2<<ch;
+		else
+		f3<<ch;
+	cout<<"\nDo you wish to continue: ";
+	cin>>ans;
+	}while(ans=='y');
+	f1.close();
+	f2.close();
+	f3.close();
+	cout<<"\nLower text contents are: ";
+	ifstream f11("lower.txt");
+	while(!f11.eof())
+	{
+		f11.get(ch);
+		cout<<ch;
+	}
+	f11.close();
+	cout<<"\nUpper text contents are: ";
+	ifstream f22("upper.txt");
+	while(!f22.eof())
+	{
+		f22.get(ch);
+		cout<<ch;
+	}
+	f22.close();
+	cout<<"\nOther text contents are: ";
+	ifstream f33("other.txt");
+	while(!f33.eof())
+	{
+		f33.get(ch);
+		cout<<ch;
+	}
+	f33.close();
+	getch();
+}

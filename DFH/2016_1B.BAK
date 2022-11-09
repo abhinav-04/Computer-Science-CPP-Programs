@@ -1,0 +1,135 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+class toys
+{
+	int tid;
+	char toy[20],status[20];
+	float mrp;
+	public:
+	void getinstock()
+	{
+		cout<<"\nEnter the toy id: ";
+		cin>>tid;
+		cout<<"\nEnter toy name: ";
+		gets(toy);
+		cout<<"\nEnter the status of toy: ";
+		gets(status);
+		cout<<"\nEnter the mrp of toy: ";
+		cin>>mrp;
+	}
+	void view()
+	{
+		cout<<tid<<":"<<toy<<":"<<mrp<<":"<<status<<endl;
+	}
+	char *seeoffer()
+	{return status;}
+	int ret_tid()
+	{   return tid;}
+	void modi_name()
+	{
+		cout<<"\nEnter toy name to modify :";
+		gets(toy);
+	}
+
+}t;
+void append()
+{
+	fstream fil;
+	fil.open("toys.dat",ios::binary|ios::out|ios::in|ios::trunc);
+	int nor;
+	cout<<"\nEnter the number of records: ";
+	cin>>nor;
+	for(int i=0;i<nor;i++)
+	{
+		t.getinstock();
+		fil.write((char*)&t,sizeof(t));
+	}
+	fil.close();
+}
+void onoffer()
+{
+	fstream f1;
+	f1.open("toys.dat",ios::binary|ios::in|ios::out);
+	toys t;
+	while(f1.read((char*)&t,sizeof(t)))
+	{
+		if(strcmpi(t.seeoffer(),"on offer")==0)
+		t.view();
+	}
+	f1.close();
+}
+void modify()
+{
+	fstream f1;
+	f1.open("toys.dat",ios::in|ios::out|ios::binary);
+	toys t;
+	int toyid;
+	cout<<"\nEnter toy id to modify: ";
+	cin>>toyid;
+	while(f1.read((char*)&t,sizeof(t)))
+	{
+		if(toyid==t.ret_tid())
+		{
+			f1.seekp(f1.tellg()-sizeof(t));
+			t.modi_name();
+			f1.write((char*)&t,sizeof(t));
+		}
+	}
+	f1.close();
+}
+void Delete()
+{
+	fstream f1,f2;
+	f1.open("toys.dat",ios::in|ios::out|ios::binary);
+	f2.open("toys1.dat",ios::in|ios::out|ios::binary);
+	toys t;
+	int toyid;
+	cout<<"\nEnter toy id to delete: ";
+	cin>>toyid;
+	while(f1.read((char*)&t,sizeof(t)))
+	{
+		if(toyid==t.ret_tid())
+		{
+			f1.seekp(f1.tellg()-sizeof(t));
+			cout<<"\nDeleting toy id: "<<toyid;
+		}
+		else
+		{
+			f2.write((char*)&t,sizeof(t));
+		}
+	}
+	f1.close();
+	f2.close();
+	remove("toys.dat");
+	rename("toys1.dat","toys.dat");
+}
+
+void show()
+{
+	fstream f1;
+	f1.open("toys.dat",ios::in|ios::out|ios::binary);
+	toys t;
+	while(f1.read((char*)&t,sizeof(t)))
+	{
+		t.view();
+	}
+	f1.close();
+}
+
+void main()
+{
+	clrscr();
+	toys t;
+	append();
+	cout<<"\nThose who are on offer: ";
+	onoffer();
+	modify();
+	show();
+	Delete();
+	show();
+	getch();
+}
+
+

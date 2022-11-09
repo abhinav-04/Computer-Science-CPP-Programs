@@ -1,0 +1,41 @@
+#include<fstream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<ctype.h>
+void main()
+{
+	clrscr();
+	char ch[31],c[31];
+	ofstream f1("text.txt");
+	ofstream f2("modtext.txt");
+	cout<<"\nEnter text: ";
+	gets(ch);
+	f1<<ch;
+	/*if(ch>='a'&&ch<='z')
+	ch=ch-32;
+	else if(ch>='A'&&ch<='Z')
+	ch=ch+32;  */
+	for(int i=0;ch[i]<='\0';i++)
+	{
+		if(isupper(ch[i]))
+			c[i]=tolower(ch[i]);
+		if(islower(ch[i]))
+			c[i]=toupper(ch[i]);
+	 }
+	 f2<<c;
+	 f1.close();
+	 f2.close();
+	 /*ifstream f11("text.txt");
+	 {
+		f11.getline(ch,31);
+		cout<<ch;
+	 }
+	 f11.close(); */
+	 ifstream f22("modtext.txt");
+	 {
+		f22.getline(c,31);
+		cout<<c;
+	 }
+	 f22.close();
+	 getch();
+	}
