@@ -1,0 +1,75 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+/*const int sz=5;
+int que[sz],fr,rr;
+fr=rr=-1;
+int que_ele(int ele)
+{
+	if(rr==sz-1)
+		return -1;
+	else if(rr=-1)
+	{
+		rr=0;
+*/
+int fr=-1,rr=-1;
+void que_ins(int que[],int ele,int sz)
+{
+	if(rr==sz-1)
+		cout<<"Overflow";
+	else if(rr==-1)
+	{
+		fr=rr=0;
+		que[rr]=ele;   //already rr=0 so enter the first value here only
+	}
+	else
+	{
+		rr++;
+		que[rr]=ele;
+	}
+}
+void que_del(int que[],int &fr)
+{
+	cout<<"\nDeleting element: "<<que[fr];
+	fr++;
+	if(fr==rr)
+		cout<<"\nUnderflow";
+}
+void show(int que[],int sz)
+{
+	for(int i=fr;i<sz;i++)
+	{
+		cout<<que[i]<<" ";
+	}
+}
+void main()
+{
+	clrscr();
+	int que[10],sz,ele;
+	//fr=rr=-1;
+	cout<<"\nEnter the size of static queue: ";
+	cin>>sz;
+	char ans='y';
+	while(ans=='y')
+	{
+		cout<<"\nEnter the element to insert: ";
+		cin>>ele;
+		que_ins(que,ele,sz);
+		cout<<"\nWanna continue :";
+		cin>>ans;
+	}
+	show(que,sz);
+	ans='y';
+	while(ans=='y')
+	{
+		que_del(que,fr);
+		cout<<"\nWanna delete more: ";
+		cin>>ans;
+	}
+
+	cout<<"\nAfter delting from queue: ";
+	show(que,sz);
+	getch();
+}
+
+

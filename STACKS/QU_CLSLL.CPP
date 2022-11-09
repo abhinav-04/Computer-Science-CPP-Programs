@@ -1,0 +1,101 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+struct node
+{
+	char nm[21];
+	node *link;
+};
+class queue
+{
+	node *fr,*rr;
+	public:
+	queue()
+	{
+		fr=rr=NULL;
+	}
+	void ins_que();
+	void del_que();
+	void display();
+	~queue();
+};
+void queue::ins_que()
+{
+	node *nptr;
+	nptr=new node;
+	cout<<"\nEnter Name: ";
+	gets(nptr->nm);
+	nptr->link=NULL;
+	if(rr==NULL)
+	{
+		rr=fr=nptr;
+	}
+	else
+	{
+		rr->link=nptr;
+		rr=nptr;
+	}
+}
+void queue::del_que()
+{
+	if(fr==NULL)
+	cout<<"\nUnderflow";
+	else
+	{
+		node *temp;
+		temp=fr;
+		fr=fr->link;
+		delete temp;
+		if(fr==NULL)
+		rr=NULL;
+	}
+}
+void queue::display()
+{
+	node *ptr;
+	ptr=fr;
+	while(ptr!=NULL)
+	{
+		cout<<ptr->nm<<endl;
+		ptr=ptr->link;
+	}
+}
+queue::~queue()
+{
+	while(fr!=NULL)
+	{
+		node *t;
+		t=fr;
+		fr=fr->link;
+		delete t;
+	}
+}
+void main()
+{
+	clrscr();
+	queue q;
+	int ch;
+	do
+	{
+		cout<<"\n1. Insert Element in Queue";
+		cout<<"\n2. Delete Element from queue";
+		cout<<"\n3. Show the queue list";
+		cout<<"\n4. Quit";
+		cout<<"\nEnter your choice: ";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:
+			q.ins_que();
+			break;
+			case 2:
+			q.del_que();
+			break;
+			case 3:
+			q.display();
+			break;
+			case 4:
+			break;
+		}
+	}while(ch!=4);
+}
