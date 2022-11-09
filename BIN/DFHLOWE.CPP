@@ -1,0 +1,2 @@
+/*wap to enter characters from user and keep lowercase char in lower.txt
+and other text in other.txt*/
